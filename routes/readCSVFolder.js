@@ -19,5 +19,6 @@ var fs = require('fs');
     itemisedBill.pop();
     // console.log(itemisedBill);
     return itemisedBill;
-  };
+  }
+
 module.exports.readCSVFolder = readCSVFolder;
