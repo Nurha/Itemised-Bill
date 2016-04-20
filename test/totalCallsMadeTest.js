@@ -7,7 +7,7 @@ describe('calculate number of calls for each network provider', function() {
 
   it('return a list of calls from MTN', function(done) {
     var callsMade = readCSVFolder.readCSVFolder('./ItemisedBill.csv');
-    var specifiesPhoneCall = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'MTN');
+    var specifiesPhone = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'MTN');
     var results = {
       '0832401145': 5,
       '0838758090': 5,
@@ -16,13 +16,13 @@ describe('calculate number of calls for each network provider', function() {
       '0837351200': 1,
       '0834590001': 1
     }
-    assert.deepEqual(totalCallsMade.totalCallsMade(specifiesPhoneCall), results);
+    assert.deepEqual(totalCallsMade.totalCallsMade(specifiesPhone), results);
     done();
   });
 
   it('return a list of calls from Vodacom', function(done) {
     var callsMade = readCSVFolder.readCSVFolder('./ItemisedBill.csv');
-    var specifiesPhoneCall = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'Vodacom');
+    var specifiesPhone = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'Vodacom');
     var results = {
       '0821302398': 2,
       '0828907600': 1,
@@ -32,19 +32,19 @@ describe('calculate number of calls for each network provider', function() {
       '0828901271': 1,
       '0824009001': 1
     }
-    assert.deepEqual(totalCallsMade.totalCallsMade(specifiesPhoneCall), results);
+    assert.deepEqual(totalCallsMade.totalCallsMade(specifiesPhone), results);
     done();
   });
 
   it('return a list of calls from CellC', function(done) {
     var callsMade = readCSVFolder.readCSVFolder('./ItemisedBill.csv');
-    var specifiesPhoneCall = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'CellC');
+    var specifiesPhone = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'CellC');
     var results = {
       '0841257809': 8,
       '0825605600': 2,
       '0845009087': 1
     }
-    assert.deepEqual(totalCallsMade.totalCallsMade(specifiesPhoneCall), results);
+    assert.deepEqual(totalCallsMade.totalCallsMade(specifiesPhone), results);
     done();
   });
 });
