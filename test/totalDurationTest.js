@@ -9,7 +9,8 @@ describe('get the total duration of talking time', function() {
 
   it('total the duration of calls for each provider listes', function(done) {
     var callsMade = readCSVFolder.readCSVFolder('./ItemisedBill.csv');
-    var specifiesPhone = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'MTN');
+    var networkProvider = [{provider:'MTN'}, {provider:'Vodacom'},{provider:'CellC'}];
+    var specifiesPhone = specifiesPhoneCall.specifiesPhoneCall(callsMade, networkProvider);
     var callDurationList = callDuration.calculateCallDuration(specifiesPhone);
     var callsAscendingOrder = callsAscending.sortInAscendingOrder(callDurationList);
     var results = [{ provider: 'MTN', duration: 3471 },
