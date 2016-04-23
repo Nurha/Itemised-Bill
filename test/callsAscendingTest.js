@@ -1,188 +1,66 @@
 var assert = require('assert');
 var readCSVFolder = require('../routes/readCSVFolder');
+var specifiesPhoneCall = require('../routes/specifiesPhoneCall');
+var callDuration = require('../routes/callDuration');
 var callsAscending = require('../routes/callsAscending');
 
-describe('return calls in ascending order', function() {
-  it('should return the list of calls in ascending order', function(done) {
+describe('return calls in ascending order', function(){
+  it('should return the list of mtn call in ascending order', function(done){
     var callsMade = readCSVFolder.readCSVFolder('./ItemisedBill.csv');
-
-    var results = [{
-      date: '01/10/2015',
-      provider: 'MTN',
-      number: '0832401145',
-      duration: '00h05m34s'
-    }, {
-      date: '27/10/2015',
-      provider: 'MTN',
-      number: '0831239023',
-      duration: '00h03m04s'
-    }, {
-      date: '03/10/2015',
-      provider: 'Vodacom',
-      number: '0821302398',
-      duration: '00h00m34s'
-    }, {
-      date: '03/10/2015',
-      provider: 'CellC',
-      number: '0841257809',
-      duration: '00h02m34s'
-    }, {
-      date: '03/10/2015',
-      provider: 'MTN',
-      number: '0832401145',
-      duration: '00h06m34s'
-    }, {
-      date: '06/10/2015',
-      provider: 'CellC',
-      number: '0841257809',
-      duration: '00h05m34s'
-    }, {
-      date: '06/10/2015',
-      provider: 'Vodacom',
-      number: '0821302398',
-      duration: '00h02m04s'
-    }, {
-      date: '06/10/2015',
-      provider: 'MTN',
-      number: '0838758090',
-      duration: '00h01m16s'
-    }, {
-      date: '07/10/2015',
-      provider: 'CellC',
-      number: '0841257809',
-      duration: '00h03m04s'
-    }, {
-      date: '10/10/2015',
-      provider: 'MTN',
-      number: '0832401145',
-      duration: '00h02m41s'
-    }, {
-      date: '10/10/2015',
-      provider: 'MTN',
-      number: '0838758090',
-      duration: '00h09m11s'
-    }, {
-      date: '10/10/2015',
-      provider: 'Vodacom',
-      number: '0828907600',
-      duration: '00h00h56ss'
-    }, {
-      date: '10/10/2015',
-      provider: 'CellC',
-      number: '0825605600',
-      duration: '00h01m40s'
-    }, {
-      date: '11/10/2015',
-      provider: 'MTN',
-      number: '0832401145',
-      duration: '00h05m34s'
-    }, {
-      date: '12/10/2015',
-      provider: 'CellC',
-      number: '0825605600',
-      duration: '00h01m34s'
-    }, {
-      date: '12/10/2015',
-      provider: 'Vodacom',
-      number: '0824501276',
-      duration: '00h00m34s'
-    }, {
-      date: '13/10/2015',
-      provider: 'MTN',
-      number: '0838758090',
-      duration: '00h02m07s'
-    }, {
-      date: '01/10/2015',
-      provider: 'MTN',
-      number: '0838758090',
-      duration: '00h01m34s'
-    }, {
-      date: '14/10/2015',
-      provider: 'MTN',
-      number: '0838758090',
-      duration: '00h05m34s'
-    }, {
-      date: '15/10/2015',
-      provider: 'MTN',
-      number: '0832401145',
-      duration: '00h02m39s'
-    }, {
-      date: '15/10/2015',
-      provider: 'Vodacom',
-      number: '0821005078',
-      duration: '00h01m16s'
-    }, {
-      date: '15/10/2015',
-      provider: 'CellC',
-      number: '0841257809',
-      duration: '00h03m04s'
-    }, {
-      date: '16/10/2015',
-      provider: 'MTN',
-      number: '0831239023',
-      duration: '00h02m41s'
-    }, {
-      date: '16/10/2015',
-      provider: 'CellC',
-      number: '0845009087',
-      duration: '00h09m11s'
-    }, {
-      date: '17/10/2015',
-      provider: 'Vodacom',
-      number: '0828009712',
-      duration: '00h00h56ss'
-    }, {
-      date: '18/10/2015',
-      provider: 'MTN',
-      number: '0832004576',
-      duration: '00h01m40s'
-    }, {
-      date: '21/10/2015',
-      provider: 'CellC',
-      number: '0841257809',
-      duration: '00h05m34s'
-    }, {
-      date: '21/10/2015',
-      provider: 'MTN',
-      number: '0831239023',
-      duration: '00h01m34s'
-    }, {
-      date: '22/10/2015',
-      provider: 'MTN',
-      number: '0837351200',
-      duration: '00h00m34s'
-    }, {
-      date: '23/10/2015',
-      provider: 'Vodacom',
-      number: '0828901271',
-      duration: '00h02m34s'
-    }, {
-      date: '23/10/2015',
-      provider: 'CellC',
-      number: '0841257809',
-      duration: '00h06m34s'
-    }, {
-      date: '24/10/2015',
-      provider: 'MTN',
-      number: '0834590001',
-      duration: '00h05m34s'
-    }, {
-      date: '24/10/2015',
-      provider: 'CellC',
-      number: '0841257809',
-      duration: '00h02m04s'
-    }, {
-      date: '24/10/2015',
-      provider: 'Vodacom',
-      number: '0824009001',
-      duration: '00h01m16s'
-    }, {
-      date: '14/10/2015',
-      provider: 'CellC',
-      number: '0841257809',
-      duration: '00h06m34s'
-    }]
-    assert.deepEqual(callsAscending.sortInAscendingOrder(callsMade), results);
-    done();
+    var specifiesPhone = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'MTN');
+    var callDurationList = callDuration.calculateCallDuration(specifiesPhone);
+     var results =[{ provider: "MTN", number: '0837351200', duration: 34 },
+                   { provider: "MTN", number: '0838758090', duration: 76 },
+                   { provider: "MTN", number: '0838758090', duration: 94 },
+                   { provider: "MTN", number: '0831239023', duration: 94 },
+                   { provider: "MTN", number: '0832004576', duration: 100 },
+                   { provider: "MTN", number: '0838758090', duration: 127 },
+                   { provider: "MTN", number: '0832401145', duration: 159 },
+                   { provider: "MTN", number: '0832401145', duration: 161 },
+                   { provider: "MTN", number: '0831239023', duration: 161 },
+                   { provider: "MTN", number: '0831239023', duration: 184 },
+                   { provider: "MTN", number: '0834590001', duration: 334 },
+                   { provider: "MTN", number: '0832401145', duration: 334 },
+                   { provider: "MTN", number: '0832401145', duration: 334 },
+                   { provider: "MTN", number: '0838758090', duration: 334 },
+                   { provider: "MTN", number: '0832401145', duration: 394 },
+                   { provider: "MTN", number: '0838758090', duration: 551 }];
+  assert.deepEqual(callsAscending.sortInAscendingOrder(callDurationList), results);
+  done();
   });
+
+it('should return the list of vodacom calls in ascending order', function(done){
+    var callsMade = readCSVFolder.readCSVFolder('./ItemisedBill.csv');
+    var specifiesPhone = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'Vodacom');
+    var callDurationList = callDuration.calculateCallDuration(specifiesPhone);
+    var results = [{ provider: "Vodacom", number: '0821302398', duration: 34 },
+                   { provider: "Vodacom", number: '0824501276', duration: 34 },
+                   { provider: "Vodacom", number: '0828907600', duration: 56 },
+                   { provider: "Vodacom", number: '0828009712', duration: 56 },
+                   { provider: "Vodacom", number: '0821005078', duration: 76 },
+                   { provider: "Vodacom", number: '0824009001', duration: 76 },
+                   { provider: "Vodacom", number: '0821302398', duration: 124 },
+                   { provider: "Vodacom", number: '0828901271', duration: 154 }];
+  assert.deepEqual(callsAscending.sortInAscendingOrder(callDurationList), results);
+  done();
+});
+
+it('should return the list of CellC calls in ascending order', function(done){
+  var callsMade = readCSVFolder.readCSVFolder('./ItemisedBill.csv');
+  var specifiesPhone = specifiesPhoneCall.specifiesPhoneCall(callsMade, 'CellC');
+  var callDurationList = callDuration.calculateCallDuration(specifiesPhone);
+  var results = [{ provider: "CellC", number: '0825605600', duration: 94 },
+                 { provider: "CellC", number: '0825605600', duration: 100 },
+                 { provider: "CellC", number: '0841257809', duration: 124 },
+                 { provider: "CellC", number: '0841257809', duration: 154 },
+                 { provider: "CellC", number: '0841257809', duration: 184 },
+                 { provider: "CellC", number: '0841257809', duration: 184 },
+                 { provider: "CellC", number: '0841257809', duration: 334 },
+                 { provider: "CellC", number: '0841257809', duration: 334 },
+                 { provider: "CellC", number: '0841257809', duration: 394 },
+                 { provider: "CellC", number: '0841257809', duration: 394 },
+                 { provider: "CellC", number: '0845009087', duration: 551 }];
+assert.deepEqual(callsAscending.sortInAscendingOrder(callDurationList), results);
+done();
+});
 });

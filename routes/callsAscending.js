@@ -1,11 +1,11 @@
 var fs = require('fs');
 
-var sortInAscendingOrder = function(callsMade) {
+var sortInAscendingOrder = function(callDuration) {
 
-  var sorted = callsMade.sort(function(a, b) {
+  var sorted = callDuration.sort(function(a, b) {
     return (a.duration - b.duration)
   });
-  console.log(sorted);
+  // console.log(sorted);
   return sorted;
 };
 module.exports.sortInAscendingOrder = sortInAscendingOrder;
